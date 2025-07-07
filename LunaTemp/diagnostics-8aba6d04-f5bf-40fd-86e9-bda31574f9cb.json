@@ -1,0 +1,44 @@
+{
+    "BuildID": "8aba6d04-f5bf-40fd-86e9-bda31574f9cb",
+    "Command": "project:build",
+    "ProjectID": "1ea3bb43f778449c78ecaf64beaf075a",
+    "ProjectStateHash": "73ebd7d99bf9ec5a6e9bae6154e498bb731492f59ec9d168ececc290f65d4090",
+    "StageCompletedAt": 2,
+    "EarliestFatalError": 0,
+    "StartTime": 1751896632567,
+    "EndTime": 1751896645377,
+    "PlaygroundUserID": 25441,
+    "OperatingSystem": "win32",
+    "TargetPlatform": "develop",
+    "UnityVersion": "2022.3.60f1\r",
+    "LunaVersion": "6.3.0",
+    "LogCount": 1,
+    "Logs": [
+        {
+            "LogID": "db0a9c6b-1099-44de-b417-c3aa82c7708b",
+            "Timestamp": 1751896645110,
+            "Stage": 1,
+            "Severity": 1,
+            "ErrorType": 0,
+            "ErrorCode": "LP1025",
+            "Description": "ExportCollectionException: ScenesCollection",
+            "Details": [
+                "Exception: ExportCollectionException\nScenesCollection\n<invalid>\nAsset couldn't be collected!",
+                "Caused by: System.ArgumentException\nScene file not found: 'Assets/@Scenes/02_GamePlay.unity'."
+            ],
+            "DescriptionValues": [
+                "ScenesCollection\n<invalid>\nAsset couldn't be collected!",
+                "Scene file not found: 'Assets/@Scenes/02_GamePlay.unity'."
+            ],
+            "DetailsValues": [
+                "<invalid>"
+            ],
+            "LogCount": 1,
+            "FilePath": "",
+            "LinePosition": 0,
+            "ClassName": "",
+            "MemberName": "",
+            "Order": 0
+        }
+    ]
+}
