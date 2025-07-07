@@ -3100,7 +3100,7 @@ Deserializers.unityVersion = "2022.3.60f1";
 
 Deserializers.productName = "Playable_Project";
 
-Deserializers.lunaInitializationTime = "07/07/2025 02:29:52";
+Deserializers.lunaInitializationTime = "07/07/2025 07:34:56";
 
 Deserializers.lunaDaysRunning = "0.0";
 
@@ -3110,7 +3110,7 @@ Deserializers.lunaSHA = "7c1090235e749b60367a931fd9d8e53ca14842b9";
 
 Deserializers.creativeName = "Subject-Test-Build";
 
-Deserializers.lunaAppID = "22415";
+Deserializers.lunaAppID = "31170";
 
 Deserializers.projectId = "1ea3bb43f778449c78ecaf64beaf075a";
 
@@ -3148,7 +3148,7 @@ Deserializers.isLunaCompilerV2Used = "True";
 
 Deserializers.companyName = "DefaultCompany";
 
-Deserializers.buildPlatform = "StandaloneOSX";
+Deserializers.buildPlatform = "StandaloneWindows64";
 
 Deserializers.applicationIdentifier = "com.Unity-Technologies.com.unity.template.urp-blank";
 
@@ -3158,7 +3158,7 @@ Deserializers.graphicsConstraint = 28;
 
 Deserializers.linearColorSpace = true;
 
-Deserializers.buildID = "5b8d55bf-c4be-4dac-af5b-f4f11207eb1b";
+Deserializers.buildID = "89fab711-7635-4e63-bb90-ee8f3ff00e49";
 
 Deserializers.runtimeInitializeOnLoadInfos = [[["UnityEngine","Rendering","DebugUpdater","RuntimeInit"],["UnityEngine","Experimental","Rendering","ScriptableRuntimeReflectionSystemSettings","ScriptingDirtyReflectionSystemInstance"]],[["Unity","VisualScripting","RuntimeVSUsageUtility","RuntimeInitializeOnLoadBeforeSceneLoad"]],[],[["UnityEngine","Experimental","Rendering","XRSystem","XRSystemInit"]],[]];
 
