@@ -9,10 +9,11 @@ public class Trays : MonoBehaviour
 
     public TrayStatus status;
 
+    [SerializeField] private List<GameObject> displayItems;
+
     private void Awake()
     {
         mainCam = Camera.main;
-        StatusUpdate();
     }
 
     private void Update()
@@ -21,6 +22,7 @@ public class Trays : MonoBehaviour
         VisibilityCheck();
         if (transform.position.y <= GameManager.Instance.trayPos[1].position.y)
         {
+            ResetTray();
             transform.position = GameManager.Instance.trayPos[0].position;
             return;
         }
@@ -50,7 +52,7 @@ public class Trays : MonoBehaviour
 
     private void OnEnterScreen()
     {
-        Debug.Log("Enter");
+        status.interactable = true;
     }
 
     private void OnExitScreen()
@@ -80,8 +82,13 @@ public class Trays : MonoBehaviour
         GameManager.Instance.trayStatus[status.trayNo] = status;
     }
 
-    public void AddItem()
+    public void AddItem(Items item)
     {
-        Debug.Log("OK");
+        displayItems[status.itemCount].SetActive(true);
+        displayItems[status.itemCount].GetComponent<MeshFilter>().mesh = item.meshFilter.mesh;
+        displayItems[status.itemCount].GetComponent<Renderer>().material = item.rendererMaterial.material;
+
+        status.itemCount++;
+        if (status.itemCount == 3) status.interactable = false;
     }
 }

@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             {
                 if (v.status.trayType == item.objType)
                 {
-                    v.AddItem();
+                    v.AddItem(item);    
                     return;
                 }
             }

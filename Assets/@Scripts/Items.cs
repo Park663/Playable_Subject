@@ -10,8 +10,8 @@ public class Items : MonoBehaviour
     [SerializeField] private List<MeshMap> meshes;
     [SerializeField] public ObjectType objType;
 
-    private MeshFilter meshFilter;
-    private Renderer rendererMaterial;
+    public MeshFilter meshFilter;
+    public Renderer rendererMaterial;
 
 
     private void Awake()
