@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isPlaying && tutorial.activeSelf)
         {
+            SoundManager.Instance.BgmControll(true);
             isPlaying = true;
             tutorial.SetActive(false);
         }
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        SoundManager.Instance.BgmControll(false);
         isPlaying = false;
         gameOver.SetActive(true);
     }

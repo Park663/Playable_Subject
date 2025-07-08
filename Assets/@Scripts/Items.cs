@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 
 
 public class Items : MonoBehaviour
@@ -65,7 +65,20 @@ public class Items : MonoBehaviour
     {
         if (moveToTray)
         {
+            SoundManager.Instance.SFXControll(0);
             ItemObjectPool.Instance.itemPool.Release(gameObject);
+        }
+        else
+        {
+            SoundManager.Instance.SFXControll(1);
+            Vector3 originalPos = transform.localPosition;
+
+            // 좌우 2번 반복 (총 4번 움직임: 좌→우→좌→우→원위치)
+            transform.DOLocalMoveX(originalPos.x + 0.3f, 0.1f)
+                .SetLoops(4, LoopType.Yoyo)
+                .SetEase(Ease.InOutSine)
+                .OnComplete(() => transform.localPosition = new Vector3(originalPos.x, transform.localPosition.y,originalPos.z)); // 정확한 위치 복원
+
         }
     }
 

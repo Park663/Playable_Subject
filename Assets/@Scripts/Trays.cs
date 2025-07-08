@@ -21,6 +21,8 @@ public class Trays : MonoBehaviour
     [SerializeField, Tooltip("아이템 개수 텍스트")] private TextMeshProUGUI labelText;
     [SerializeField, Tooltip("성공 후 이미지")] private GameObject starImage;
 
+    public bool tutorial = true;
+
     private void Awake()
     {
         mainCam = Camera.main;
@@ -77,6 +79,8 @@ public class Trays : MonoBehaviour
     /// </summary>
     private void OnEnterScreen()
     {
+        if (tutorial) return;
+   
         status.interactable = true; // 화면 안으로 들어온 순간부터 아이템 적재 가능
         label.gameObject.SetActive(true);
     }
@@ -97,6 +101,7 @@ public class Trays : MonoBehaviour
     /// </summary>
     private void ResetTray()
     {
+        tutorial = false;
         foreach (var v in displayItems) // 전시용 오브젝트 끄기
         {
             v.SetActive(false);
