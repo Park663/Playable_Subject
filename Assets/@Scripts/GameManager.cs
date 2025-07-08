@@ -62,19 +62,19 @@ public class GameManager : MonoBehaviour
 
     public void AccuracyCheck(Items item)
     {
-        foreach (var v in trays)
+        foreach (var tray in trays)
         {
-            if (v.status.interactable)
-            {
-                if (v.status.trayType == item.objType)
-                {
-                    v.AddItem(item);    
-                    return;
-                }
-            }
+            var status = tray.status;
+
+            if (!status.interactable || status.trayType != item.objType)
+                continue;
+
+            item.OnClicked(true);
+            tray.AddItem(item);
+            return;
         }
 
-        item.TouchEffect(false);
+        item.OnClicked(false);
     }
 
     public void GameOver()

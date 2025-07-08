@@ -43,9 +43,12 @@ public class Items : MonoBehaviour
         transform.Translate(Vector2.up * GameManager.Instance.itemSpeed * Time.deltaTime);
     }
 
-    public void TouchEffect(bool b)
+    public void OnClicked(bool b)
     {
-
+        if (b)
+        {
+            ItemObjectPool.Instance.itemPool.Release(gameObject);
+        }
     }
 
     private void OnMouseDown()

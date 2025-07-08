@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Trays : MonoBehaviour
 {
@@ -10,6 +12,13 @@ public class Trays : MonoBehaviour
     public TrayStatus status;
 
     [SerializeField] private List<GameObject> displayItems;
+    [SerializeField] private List<Sprite> labelImages;
+
+    [SerializeField] private RectTransform label;
+    public Image itemLabel;
+    public TextMeshProUGUI labelText;
+
+    public Transform labelPos;
 
     private void Awake()
     {
@@ -34,7 +43,10 @@ public class Trays : MonoBehaviour
         }
 
         transform.Translate(Vector2.down * GameManager.Instance.traySpeed * Time.deltaTime);
+        label.position = labelPos.position;
+
     }
+
     private void VisibilityCheck()
     {
         Vector3 viewPos = mainCam.WorldToViewportPoint(transform.position);
@@ -57,6 +69,7 @@ public class Trays : MonoBehaviour
     private void OnEnterScreen()
     {
         status.interactable = true;
+        label.gameObject.SetActive(true);
     }
 
     private void OnExitScreen()
@@ -77,11 +90,15 @@ public class Trays : MonoBehaviour
         {
             v.SetActive(false);
         }
-
+        label.gameObject.SetActive(false);
         status.itemCount = 0;
         status.interactable = false;
-        status.trayType = GameManager.Instance.TrayTypeChange();
 
+        ObjectType type = GameManager.Instance.TrayTypeChange();
+        status.trayType = type;
+
+        itemLabel.sprite = labelImages[(int)type];
+        labelText.text = "/ 3";
     }
 
     private bool CheckTray()
@@ -94,8 +111,15 @@ public class Trays : MonoBehaviour
         displayItems[status.itemCount].SetActive(true);
         displayItems[status.itemCount].GetComponent<MeshFilter>().mesh = item.meshFilter.mesh;
         displayItems[status.itemCount].GetComponent<Renderer>().material = item.rendererMaterial.material;
+        labelText.text = " / " + (2 - status.itemCount);
 
         status.itemCount++;
-        if (status.itemCount == 3) status.interactable = false;
+
+        if (status.itemCount == 3)
+        {
+            status.interactable = false;
+            labelText.text = "";
+
+        }
     }
 }

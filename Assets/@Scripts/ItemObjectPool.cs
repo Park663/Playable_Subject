@@ -12,6 +12,7 @@ public class ItemObjectPool : MonoBehaviour
     [Range(0, 50)] public int maxSize = 30;
 
     public IObjectPool<GameObject> itemPool;
+    public Transform itemParent;
 
     void Awake()
     {
@@ -27,7 +28,7 @@ public class ItemObjectPool : MonoBehaviour
     }
     private GameObject CreateItem()
     {
-        GameObject obj = Instantiate(itemPrefab);
+        GameObject obj = Instantiate(itemPrefab, itemParent);
         return obj;
     }
     private void EnableItem(GameObject item)
