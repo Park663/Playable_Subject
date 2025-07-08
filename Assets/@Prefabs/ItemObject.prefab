@@ -97,15 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshes:
-  - mesh: {fileID: -5461360771261093600, guid: b6b0007636d81462498081da17d6016a, type: 3}
+  - type: 0
+    mesh: {fileID: -5461360771261093600, guid: b6b0007636d81462498081da17d6016a, type: 3}
     material: {fileID: 2100000, guid: 7e67570869c457940a74ea0931b70b68, type: 2}
-  - mesh: {fileID: 5464360380485138022, guid: ca2391310a1744dacb71a18fe2dfd6ba, type: 3}
+  - type: 1
+    mesh: {fileID: 5464360380485138022, guid: ca2391310a1744dacb71a18fe2dfd6ba, type: 3}
     material: {fileID: 2100000, guid: ece2f2cd791d65f418b5b81db530bd5e, type: 2}
-  - mesh: {fileID: 6387274394900856021, guid: e206fb3dc4a7847f1afd6f235bc5ea30, type: 3}
+  - type: 2
+    mesh: {fileID: 6387274394900856021, guid: e206fb3dc4a7847f1afd6f235bc5ea30, type: 3}
     material: {fileID: 2100000, guid: a4d0ef4526936114db54f754eb9d802e, type: 2}
-  - mesh: {fileID: 1989836509320027651, guid: eeed37947b54a42dabf3583576083796, type: 3}
+  - type: 3
+    mesh: {fileID: 1989836509320027651, guid: eeed37947b54a42dabf3583576083796, type: 3}
     material: {fileID: 2100000, guid: 9af88b5da9b198c45a911d5b256aee4d, type: 2}
-  - mesh: {fileID: -6197178469139424334, guid: 24372e5c7836e49f48857a6985636870, type: 3}
+  - type: 4
+    mesh: {fileID: -6197178469139424334, guid: 24372e5c7836e49f48857a6985636870, type: 3}
     material: {fileID: 2100000, guid: 6b36247b57042134795489623eaee80f, type: 2}
-  meshFilter: {fileID: 3198507940862045228}
-  material: {fileID: 2100000, guid: a4d0ef4526936114db54f754eb9d802e, type: 2}
+  objType: 0
