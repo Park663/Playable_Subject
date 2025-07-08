@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var v in itemSpawnPos)
             {
-                ItemObjectPool.Instance.itemPool.Get().transform.position = v.position;
+                ItemObjectPool.Instance.Get().transform.position = v.position;
             }
         }
         else

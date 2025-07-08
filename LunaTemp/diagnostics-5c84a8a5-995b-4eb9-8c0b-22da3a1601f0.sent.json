@@ -1,0 +1,386 @@
+{
+  "BuildID": "5c84a8a5-995b-4eb9-8c0b-22da3a1601f0",
+  "Command": "project:build",
+  "ProjectID": "1ea3bb43f778449c78ecaf64beaf075a",
+  "ProjectStateHash": "30d93f46e1b42e60328e9cedcac586767d07b1cc88d051f029e52395edf3574e",
+  "StageCompletedAt": 3,
+  "EarliestFatalError": 0,
+  "StartTime": 1752016446587,
+  "EndTime": 1752016474709,
+  "PlaygroundUserID": 25441,
+  "OperatingSystem": "win32",
+  "UnityPackageID": null,
+  "TargetPlatform": "develop",
+  "UnityVersion": "2022.3.60f1\r",
+  "LunaVersion": "6.3.0",
+  "LogCount": 16,
+  "Logs": [
+    {
+      "LogID": "f37a88db-bf1e-4f00-aea2-b57e3d8c332d",
+      "Order": 13,
+      "Timestamp": 1752016475056,
+      "Stage": 3,
+      "ErrorType": 1,
+      "ErrorCode": "LP3006",
+      "Description": "You are not using the Luna API: Playable.InstallFullGame",
+      "Details": [
+        "You are not using the Luna API: Playable.InstallFullGame. Some ad networks require these calls. Please add these calls to ensure your playable works on all ad networks. Check documentation for more information."
+      ],
+      "DescriptionValues": [
+        "Playable",
+        "InstallFullGame"
+      ],
+      "DetailsValues": [
+        "Playable",
+        "InstallFullGame"
+      ],
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "6619269c-aee9-4aef-beef-ef12d4a4616f",
+      "Order": 13,
+      "Timestamp": 1752016475057,
+      "Stage": 3,
+      "ErrorType": 1,
+      "ErrorCode": "LP3015",
+      "Description": "You are not the Game Ended API: LifeCycle.GameEnded",
+      "Details": [
+        "You are not using the Game Ended API: LifeCycle.GameEnded. Some ad networks require this call, please add the event to avoid the ad being rejected."
+      ],
+      "DescriptionValues": [
+        "LifeCycle",
+        "GameEnded"
+      ],
+      "DetailsValues": [
+        "LifeCycle",
+        "GameEnded"
+      ],
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "f3c9a7eb-c41c-472a-801f-75207ec20240",
+      "Order": 13,
+      "Timestamp": 1752016475057,
+      "Stage": 3,
+      "ErrorType": 3,
+      "ErrorCode": "LP3007",
+      "Description": "You are not using any custom events",
+      "Details": [
+        "You are not using any custom events. It is recommended to use custom events to have a better understanding of the playable."
+      ],
+      "DescriptionValues": [
+        ""
+      ],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "62d5ba9f-020f-4729-a45d-8ed3cc7475a4",
+      "Order": 13,
+      "Timestamp": 1752016475057,
+      "Stage": 3,
+      "ErrorType": 3,
+      "ErrorCode": "LP3011",
+      "Description": "You are not using any LunaPlaygroundFields attributes.",
+      "Details": [
+        "You are not using any LunaPlaygroundFields attributes, it allows you to configure your playable to different concepts to find the best variation, which can drastically improve playable performance on all ad networks."
+      ],
+      "DescriptionValues": null,
+      "DetailsValues": null,
+      "LogCount": 1,
+      "LinePosition": null,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "95fe07ba-85e6-4256-a753-2e850c639e1c",
+      "Order": 0,
+      "Timestamp": 1752016448075,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1030",
+      "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+      "Details": [
+        "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        "LiberationSans SDF - Fallback",
+        "Dynamic"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "366f9251-1b5e-4b34-a489-31adc2419c30",
+      "Order": 1,
+      "Timestamp": 1752016450121,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1030",
+      "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+      "Details": [
+        "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        "Anton SDF",
+        "Dynamic"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "9b6651ac-504b-4d0a-add9-0c715ab288c4",
+      "Order": 2,
+      "Timestamp": 1752016450180,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1030",
+      "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+      "Details": [
+        "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        "Bangers SDF",
+        "Dynamic"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "c2cf80e4-f314-4935-8e1d-7b45096dffbc",
+      "Order": 3,
+      "Timestamp": 1752016450249,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1030",
+      "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+      "Details": [
+        "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        "Electronic Highway Sign SDF",
+        "Dynamic"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "83a34814-3e7e-4f4e-82dc-8313b7e0be02",
+      "Order": 4,
+      "Timestamp": 1752016450319,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1030",
+      "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+      "Details": [
+        "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        "Oswald Bold SDF",
+        "Dynamic"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "28cd1c9b-bf43-4b84-bcdf-d8d372a23f9f",
+      "Order": 5,
+      "Timestamp": 1752016450335,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1030",
+      "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+      "Details": [
+        "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        "Roboto-Bold SDF",
+        "Dynamic"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "cab4dbcf-90c2-404d-a639-5b78f6405684",
+      "Order": 6,
+      "Timestamp": 1752016452036,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1006",
+      "Description": "Linear color space is not supported",
+      "Details": [
+        "Due to compatibility reasons, Luna is only able to use Gamma color space for rendering. Please adjust your player settings."
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "2c326462-8455-4a71-af26-401d176742ee",
+      "Order": 7,
+      "Timestamp": 1752016452036,
+      "Stage": 1,
+      "ErrorType": 2,
+      "ErrorCode": "LP1014",
+      "Description": "We recommend running Runtime Analysis to find and remove all unused code",
+      "Details": [
+        "Navigate to the Runtime Analysis → Code tab to enable code stripping. Before uploading the playable, please make sure to have played all scenario’s of the playable in a development build to make Runtime Analysis work properly."
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "14c7423f-448e-499f-95a6-6837b4e29dce",
+      "Order": 8,
+      "Timestamp": 1752016452043,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1027",
+      "Description": "This DOTween version is not supported",
+      "Details": [
+        "The incorrect DOTween version for this Unity version is in use, please update or downgrade to the recommended version {0} in the package manager. Go to Window → Package Manager."
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "f17ad352-2f2a-47df-b71d-bbde25fc09f9",
+      "Order": 9,
+      "Timestamp": 1752016452043,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1015",
+      "Description": "This TMP version is not fully supported",
+      "Details": [
+        "The incorrect Text Mesh Pro for this Unity version is in use, please update or downgrade to the recommended version {0} in the package manager. Go to Window → Package Manager"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [
+        ""
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "6a2f262a-a361-4e28-99fc-85178e5d8f8a",
+      "Order": 10,
+      "Timestamp": 1752016452043,
+      "Stage": 1,
+      "ErrorType": 0,
+      "ErrorCode": "LP1032",
+      "Description": "Package(s) is not supported in Luna",
+      "Details": [
+        "Currently package(s) com.unity.timeline are not supported in Luna. We recommend you to remove it and workaround it's functionality."
+      ],
+      "DescriptionValues": [
+        "com.unity.timeline (1.7.6)"
+      ],
+      "DetailsValues": [
+        "com.unity.timeline"
+      ],
+      "LogCount": 1,
+      "LinePosition": 0,
+      "FilePath": "D:/Github/Playable_Subject/Packages\\manifest.json",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    },
+    {
+      "LogID": "1c8b736c-15ac-48cf-a65d-43de0cc8cdac",
+      "Order": 11,
+      "Timestamp": 1752016452043,
+      "Stage": 1,
+      "ErrorType": 3,
+      "ErrorCode": "LP1002",
+      "Description": "Repeat wrap mode used on a texture with non power-of-two dimensions, this might not be rendered correctly.",
+      "Details": [
+        "LiberationSans SDF Atlas",
+        "Anton SDF Atlas",
+        "Bangers SDF Atlas",
+        "Electronic Highway Sign SDF Atlas",
+        "Oswald Bold SDF Atlas",
+        "Roboto-Bold SDF Atlas"
+      ],
+      "DescriptionValues": [],
+      "DetailsValues": [],
+      "LogCount": 6,
+      "LinePosition": 0,
+      "FilePath": "",
+      "ClassName": "",
+      "MemberName": "",
+      "Severity": 0
+    }
+  ]
+}

@@ -1,15 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class ItemObjectPool : MonoBehaviour
 {
     public static ItemObjectPool Instance { get; private set; }
-    // 오브젝트 풀 설정
+
+    public Queue<GameObject> itemPool = new Queue<GameObject>();
     private int defaultCapacity = 21;
     private int maxSize = 50;
-    public IObjectPool<GameObject> itemPool;
 
     [SerializeField, Tooltip("아이템 프리팹")] private GameObject itemPrefab;
     [SerializeField, Tooltip("아이템 생성할 부모 오브젝트")] private Transform itemParent;
@@ -24,24 +22,45 @@ public class ItemObjectPool : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        itemPool = new ObjectPool<GameObject>(CreateItem, EnableItem, DisableItem, DestroyItem, true, defaultCapacity, maxSize);
+        // 초기 생성
+        for (int i = 0; i < defaultCapacity; i++)
+        {
+            var obj = CreateItem();
+            obj.SetActive(false);
+            itemPool.Enqueue(obj);
+        }
     }
+
     private GameObject CreateItem()
     {
         GameObject obj = Instantiate(itemPrefab, itemParent);
         return obj;
     }
-    private void EnableItem(GameObject item)
+
+    public GameObject Get()
     {
-        item.SetActive(true);
-    }
-    private void DisableItem(GameObject item)
-    {
-        item.SetActive(false);
-    }
-    private void DestroyItem(GameObject item)
-    {
-        Destroy(item);
+        GameObject obj;
+        if (itemPool.Count > 0)
+        {
+            obj = itemPool.Dequeue();
+        }
+        else
+        {
+            obj = CreateItem();
+        }
+        obj.SetActive(true);
+        return obj;
     }
 
+    public void Release(GameObject item)
+    {
+        if (itemPool.Count >= maxSize)
+        {
+            Destroy(item);
+            return;
+        }
+
+        item.SetActive(false);
+        itemPool.Enqueue(item);
+    }
 }

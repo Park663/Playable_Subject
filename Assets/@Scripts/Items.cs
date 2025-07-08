@@ -51,7 +51,7 @@ public class Items : MonoBehaviour
     {
         if (transform.position.y >= GameManager.Instance.itemEndPos.position.y)
         {
-            ItemObjectPool.Instance.itemPool.Release(gameObject);
+            ItemObjectPool.Instance.Release(gameObject);
             return;
         }
         transform.Translate(Vector2.up * GameManager.Instance.itemSpeed * Time.deltaTime);
@@ -66,7 +66,7 @@ public class Items : MonoBehaviour
         if (moveToTray)
         {
             SoundManager.Instance.SFXControll(0);
-            ItemObjectPool.Instance.itemPool.Release(gameObject);
+            ItemObjectPool.Instance.Release(gameObject);
         }
         else
         {
