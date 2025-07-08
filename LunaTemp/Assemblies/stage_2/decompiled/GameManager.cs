@@ -1,175 +1,139 @@
-using System.Collections;
-using Luna.Unity;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-	public enum CharatcerType
-	{
-		Cat,
-		Dog
-	}
+	[Tooltip("게임 진행 상황")]
+	public bool isPlaying;
 
-	public static GameManager instance;
+	[Tooltip("튜토리얼")]
+	public GameObject tutorial;
 
-	public GameObject player;
+	[Tooltip("게임 오버")]
+	public GameObject gameOver;
 
-	public Text endCardTitle;
-
-	public Text endDescription;
-
-	public Text endInstall;
-
-	public Text score;
-
-	public Text Intro;
-
-	public Text retry;
-
-	public Text Target;
-
-	public GameObject endCard;
-
-	public GameObject introText;
-
-	public GameObject Hand;
-
-	public GameObject targetObj;
-
-	public GameObject retryBtn;
-
-	private bool _gameEnded = false;
-
-	private bool oneTime = false;
+	[Header("-----아이템 파라미터-----")]
+	[Tooltip("아이템 이동 속도")]
+	[Range(0f, 10f)]
+	public float itemSpeed;
 
 	[SerializeField]
-	private Image iconIMG;
+	[Range(0f, 10f)]
+	[Tooltip("아이템 생성 간격")]
+	private float spawnInterval;
 
-	[Header("Playground End Card fields")]
-	[LunaPlaygroundField("End Card Title", 0, "End Card Details", false, null)]
-	public string title;
+	[SerializeField]
+	[Range(0f, 10f)]
+	[Tooltip("아이템 생성까지 남은 시간")]
+	private float spawnCoolTime;
 
-	[LunaPlaygroundField("End Card Description", 0, "End Card Details", false, null)]
-	public string description;
+	[SerializeField]
+	[Tooltip("아이템 생성 위치")]
+	private List<Transform> itemSpawnPos = new List<Transform>();
 
-	[LunaPlaygroundField("End Card Install Text", 0, "End Card Details", false, null)]
-	public string installText;
+	[Tooltip("아이템 소멸 위치")]
+	public Transform itemEndPos;
 
-	[LunaPlaygroundField("End Card Retry Text", 0, "End Card Details", false, null)]
-	public string retryText;
+	[Header("-----트레이 파라미터-----")]
+	[Tooltip("트레이 이동 속도")]
+	[Range(0f, 10f)]
+	public float traySpeed;
 
-	[LunaPlaygroundField("Tutorial Text", 1, "Introduction Tutorial", false, null)]
-	public string IntroText;
+	[Tooltip("트레이 생성 및 소멸 위치")]
+	public List<Transform> trayPos = new List<Transform>();
 
-	[LunaPlaygroundField("Tutorial Target Text", 1, "Introduction Tutorial", false, null)]
-	public string targetText;
+	[SerializeField]
+	[Tooltip("트레이")]
+	private List<Trays> trays = new List<Trays>();
 
-	[LunaPlaygroundField("Text Colour", 2, "Change Text Colours", false, null)]
-	public Color textColours;
-
-	[Header("Choose Character")]
-	[LunaPlaygroundField("Character Cat or Dog", 3, "Character Selection", false, null)]
-	public CharatcerType type;
-
-	[Header("Icon Sprite")]
-	[LunaPlaygroundAsset("Icon Image", 4, "Change Icon")]
-	public Texture2D iconTex;
-
-	[LunaPlaygroundField("Retry Count", 5, "Number Retries", false, null)]
-	public int maxCount;
-
-	private static int _curentCount;
+	public static GameManager Instance { get; private set; }
 
 	private void Awake()
 	{
-		instance = this;
-	}
-
-	private void Start()
-	{
-		Sprite icon = Sprite.Create(iconTex, new Rect(0f, 0f, iconTex.width, iconTex.height), new Vector2(0.5f, 0.5f));
-		iconIMG.sprite = icon;
-		endCardTitle.text = title;
-		endDescription.text = description;
-		endInstall.text = installText;
-		retry.text = retryText;
-		Intro.text = IntroText;
-		Target.text = targetText;
-		endCardTitle.color = textColours;
-		endDescription.color = textColours;
-		endInstall.color = textColours;
-		Intro.color = textColours;
-		retry.color = textColours;
-	}
-
-	public IEnumerator GameStart()
-	{
-		player.SetActive(true);
-		introText.SetActive(true);
-		Hand.SetActive(true);
-		Analytics.LogEvent(Analytics.EventType.LevelStart);
-		Analytics.LogEvent(Analytics.EventType.TutorialStarted);
-		yield return null;
+		if (Instance != null && Instance != this)
+		{
+			Object.Destroy(base.gameObject);
+			return;
+		}
+		Instance = this;
+		Object.DontDestroyOnLoad(base.gameObject);
 	}
 
 	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (isPlaying)
 		{
-			StartCoroutine(ObjectiveMessage());
+			SpawnItem();
 		}
 	}
 
-	private IEnumerator ObjectiveMessage()
+	private void SpawnItem()
 	{
-		if (!oneTime)
+		if (spawnCoolTime >= spawnInterval)
 		{
-			targetObj.SetActive(true);
-			yield return new WaitForSecondsRealtime(2f);
-			targetObj.SetActive(false);
-			oneTime = true;
-			Analytics.LogEvent(Analytics.EventType.TutorialComplete);
+			spawnCoolTime = 0f;
+			{
+				foreach (Transform v in itemSpawnPos)
+				{
+					ItemObjectPool.Instance.Get().transform.position = v.position;
+				}
+				return;
+			}
+		}
+		spawnCoolTime += Time.deltaTime;
+	}
+
+	public void AccuracyCheck(Items item)
+	{
+		foreach (Trays tray in trays)
+		{
+			TrayStatus status = tray.status;
+			if (!status.interactable || status.trayType != item.objType)
+			{
+				continue;
+			}
+			item.OnClicked(true);
+			tray.AddItem(item);
+			return;
+		}
+		item.OnClicked(false);
+	}
+
+	public void GameStart()
+	{
+		if (!isPlaying && tutorial.activeSelf)
+		{
+			SoundManager.Instance.BgmControll(true);
+			isPlaying = true;
+			tutorial.SetActive(false);
 		}
 	}
 
-	public IEnumerator ShowEndCard()
+	public void GameOver()
 	{
-		endCard.SetActive(true);
-		Hand.SetActive(false);
-		introText.SetActive(false);
-		targetObj.SetActive(false);
-		Analytics.LogEvent(Analytics.EventType.EndCardShown);
-		if (_curentCount >= maxCount)
+		SoundManager.Instance.BgmControll(false);
+		isPlaying = false;
+		gameOver.SetActive(true);
+	}
+
+	public ObjectType TrayTypeChange()
+	{
+		bool b = true;
+		int i = -1;
+		do
 		{
-			EndGame();
-			retryBtn.SetActive(false);
+			b = true;
+			i = Random.Range(0, 5);
+			foreach (Trays v in trays)
+			{
+				if (i == (int)v.status.trayType)
+				{
+					b = false;
+					break;
+				}
+			}
 		}
-		yield return new WaitForSeconds(2f);
-		player.SetActive(false);
-	}
-
-	public void restartGame()
-	{
-		_curentCount++;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		Analytics.LogEvent(Analytics.EventType.LevelRetry);
-		StartCoroutine(GameStart());
-	}
-
-	public void EndGame()
-	{
-		Playable.InstallFullGame();
-		if (!_gameEnded)
-		{
-			LifeCycle.GameEnded();
-			_gameEnded = true;
-		}
-	}
-
-	public void InstallGame()
-	{
-		Playable.InstallFullGame();
+		while (!b);
+		return (ObjectType)i;
 	}
 }
