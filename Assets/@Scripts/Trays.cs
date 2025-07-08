@@ -7,9 +7,12 @@ public class Trays : MonoBehaviour
     private Camera mainCam;
     private bool wasVisibleLastFrame = false;
 
+    public TrayStatus status;
+
     private void Awake()
     {
         mainCam = Camera.main;
+        StatusUpdate();
     }
 
     private void Update()
@@ -63,5 +66,15 @@ public class Trays : MonoBehaviour
     private bool CheckTray()
     {
         return true;
+    }
+
+    private void StatusUpdate()
+    {
+        GameManager.Instance.trayStatus[status.trayNo] = status;
+    }
+
+    public void AddItem()
+    {
+        Debug.Log("OK");
     }
 }

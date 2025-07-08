@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public float traySpeed = 10f;
     public List<Transform> trayPos = new List<Transform>();
 
+    public List<Trays> trays = new List<Trays>();
+    public List<TrayStatus> trayStatus;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,6 +30,8 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        
     }
 
     private void Update()
@@ -54,6 +59,23 @@ public class GameManager : MonoBehaviour
         {
             spawnCoolTime += Time.deltaTime;
         }
+    }
+
+    public void AccuracyCheck(Items item)
+    {
+        foreach (var v in trays)
+        {
+            if (v.status.interactable)
+            {
+                if (v.status.trayType == item.objType)
+                {
+                    v.AddItem();
+                    return;
+                }
+            }
+        }
+
+        item.TouchEffect(false);
     }
 
 

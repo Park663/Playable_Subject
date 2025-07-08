@@ -8,7 +8,7 @@ using UnityEngine;
 public class Items : MonoBehaviour
 {   
     [SerializeField] private List<MeshMap> meshes;
-    [SerializeField] private ObejectType objType;
+    [SerializeField] public ObjectType objType;
 
     private MeshFilter meshFilter;
     private Renderer rendererMaterial;
@@ -26,8 +26,8 @@ public class Items : MonoBehaviour
     }
     private void RandomMesh()
     {
-        int n = UnityEngine.Random.Range(0, (int)ObejectType.Count);
-        objType = (ObejectType)n;   
+        int n = UnityEngine.Random.Range(0, (int)ObjectType.Count);
+        objType = (ObjectType)n;   
         meshFilter.mesh = meshes[n].mesh;
         rendererMaterial.material = meshes[n].material;
     }
@@ -43,9 +43,14 @@ public class Items : MonoBehaviour
         transform.Translate(Vector2.up * GameManager.Instance.itemSpeed * Time.deltaTime);
     }
 
+    public void TouchEffect(bool b)
+    {
+
+    }
+
     private void OnMouseDown()
     {
-        Debug.Log("Clicked");
+        GameManager.Instance.AccuracyCheck(this);
     }
 }
 

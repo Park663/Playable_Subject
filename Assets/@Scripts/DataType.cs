@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
 
+[Serializable]
+
 public struct TrayStatus
 {
-    public ObejectType trayType;
+    public int trayNo;
+    public ObjectType trayType;
     public bool interactable;
     public int itemCount;
 }
@@ -11,11 +14,11 @@ public struct TrayStatus
 [Serializable]
 public struct MeshMap
 {
-    public ObejectType type;
+    public ObjectType type;
     public Mesh mesh;
     public Material material;
 }
-public enum ObejectType
+public enum ObjectType
 {
     Coke = 0,
     Juice,

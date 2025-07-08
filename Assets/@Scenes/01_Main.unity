@@ -365,10 +365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20423bfe3c3e9804896aa41e9951d414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlaying: 0
+  isPlaying: 1
   itemSpeed: 1
   spawnInterval: 3
-  spawnCoolTime: 0
+  spawnCoolTime: 3
   itemEndPos: {fileID: 543450652614754459}
   itemSpawnPos:
   - {fileID: 543450652319879699}
@@ -378,6 +378,23 @@ MonoBehaviour:
   trayPos:
   - {fileID: 455715668}
   - {fileID: 271376898}
+  trays:
+  - {fileID: 3469287836908057522}
+  - {fileID: 3469287838463473752}
+  - {fileID: 3469287838648662128}
+  trayStatus:
+  - trayNo: 0
+    trayType: 0
+    interactable: 0
+    itemCount: 0
+  - trayNo: 0
+    trayType: 0
+    interactable: 0
+    itemCount: 0
+  - trayNo: 0
+    trayType: 0
+    interactable: 0
+    itemCount: 0
 --- !u!1 &1419019246
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +865,7 @@ Transform:
   m_GameObject: {fileID: 919132148274687304}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000003774895, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.8, y: 20.53, z: 16}
+  m_LocalPosition: {x: -6.8, y: 20.5, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -863,7 +880,7 @@ Transform:
   m_GameObject: {fileID: 919132148055879024}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.8, y: 33.03, z: 16}
+  m_LocalPosition: {x: -6.8, y: 33, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -908,7 +925,7 @@ Transform:
   m_GameObject: {fileID: 919132148731193006}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.8, y: 8.030001, z: 16}
+  m_LocalPosition: {x: -6.8, y: 8, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1196,7 +1213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b04e7d1c7dfec4885a11009d9908f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVisible: 0
+  status:
+    trayNo: 0
+    trayType: 0
+    interactable: 1
+    itemCount: 0
 --- !u!33 &3469287838463473751
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1217,7 +1238,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b04e7d1c7dfec4885a11009d9908f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVisible: 0
+  status:
+    trayNo: 1
+    trayType: 2
+    interactable: 0
+    itemCount: 0
 --- !u!33 &3469287838648662127
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1238,7 +1263,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b04e7d1c7dfec4885a11009d9908f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVisible: 0
+  status:
+    trayNo: 2
+    trayType: 4
+    interactable: 0
+    itemCount: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
