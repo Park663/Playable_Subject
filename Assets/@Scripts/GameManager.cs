@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     public List<Transform> trayPos = new List<Transform>();
 
     public List<Trays> trays = new List<Trays>();
-    public List<TrayStatus> trayStatus;
 
     void Awake()
     {
@@ -83,4 +82,26 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
     }
 
+    public ObjectType TrayTypeChange()
+    {
+        bool b = true;
+
+        int n = -1; 
+        do
+        {
+            b = true;
+            n = UnityEngine.Random.Range(0, (int)ObjectType.Count);
+
+            foreach(var v in trays)
+            {
+                if (n == (int)v.status.trayType)
+                {
+                    b = false; break;
+                }
+            }
+
+        } while (!b);
+
+        return (ObjectType)n;
+    }
 }

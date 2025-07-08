@@ -20,6 +20,12 @@ public class Trays : MonoBehaviour
     {
         if (!GameManager.Instance.isPlaying) return;
         VisibilityCheck();
+        Move();
+
+    }
+
+    private void Move()
+    {
         if (transform.position.y <= GameManager.Instance.trayPos[1].position.y)
         {
             ResetTray();
@@ -29,8 +35,6 @@ public class Trays : MonoBehaviour
 
         transform.Translate(Vector2.down * GameManager.Instance.traySpeed * Time.deltaTime);
     }
-
-
     private void VisibilityCheck()
     {
         Vector3 viewPos = mainCam.WorldToViewportPoint(transform.position);
@@ -69,17 +73,20 @@ public class Trays : MonoBehaviour
 
     private void ResetTray()
     {
+        foreach (var v in displayItems)
+        {
+            v.SetActive(false);
+        }
+
+        status.itemCount = 0;
+        status.interactable = false;
+        status.trayType = GameManager.Instance.TrayTypeChange();
 
     }
 
     private bool CheckTray()
     {
         return status.itemCount == 3;
-    }
-
-    private void StatusUpdate()
-    {
-        GameManager.Instance.trayStatus[status.trayNo] = status;
     }
 
     public void AddItem(Items item)
