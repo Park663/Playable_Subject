@@ -24,6 +24,7 @@ public class Trays : MonoBehaviour
     private void Awake()
     {
         mainCam = Camera.main;
+        label.position = labelPos.position;
     }
 
     private void Update()

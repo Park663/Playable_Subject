@@ -10,6 +10,8 @@ public class Items : MonoBehaviour
     [SerializeField, Tooltip("아이템 종류, 메쉬, 머티리얼")] private List<MeshMap> meshes;
     [Tooltip("아이템의 종류")] public ObjectType objType;
 
+    public bool preSet; // 미리 생성된 아이템은 랜덤을 적용하지 않음
+
     // 메쉬와 머티리얼 자가 참조용
     [HideInInspector] public MeshFilter meshFilter;
     [HideInInspector] public Renderer rendererMaterial;
@@ -23,6 +25,7 @@ public class Items : MonoBehaviour
 
     private void OnEnable()
     {
+        if (preSet) return;
         RandomMesh();
     }
 
@@ -68,7 +71,13 @@ public class Items : MonoBehaviour
 
     private void OnMouseDown()
     {
+        GameManager.Instance.GameStart();
         GameManager.Instance.AccuracyCheck(this);
+    }
+
+    private void OnDisable()
+    {
+        preSet = false;
     }
 }
 

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [Tooltip("게임 진행 상황")] public bool isPlaying;
+    [Tooltip("튜토리얼")] public GameObject tutorial;
+    [Tooltip("게임 오버")] public GameObject gameOver;
 
     [Header("-----아이템 파라미터-----")]
     [Tooltip("아이템 이동 속도"), Range(0,10f)] public float itemSpeed;
@@ -15,10 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("아이템 생성 위치")] List<Transform> itemSpawnPos = new List<Transform>();
     [Tooltip("아이템 소멸 위치")] public Transform itemEndPos;
 
-
+    [Header("-----트레이 파라미터-----")]
     [Tooltip("트레이 이동 속도"), Range(0, 10f)] public float traySpeed;
     [Tooltip("트레이 생성 및 소멸 위치")] public List<Transform> trayPos = new List<Transform>();
-    [Tooltip("트레이")] private List<Trays> trays = new List<Trays>();
+    [SerializeField, Tooltip("트레이")] private List<Trays> trays = new List<Trays>();
 
     void Awake()
     {
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour
             if (!status.interactable || status.trayType != item.objType)
                 continue;
 
+
             item.OnClicked(true);
             tray.AddItem(item);
             return;
@@ -79,11 +82,24 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 게임 시작
+    /// </summary>
+    public void GameStart()
+    {
+        if (!isPlaying && tutorial.activeSelf)
+        {
+            isPlaying = true;
+            tutorial.SetActive(false);
+        }
+    }
+    
+    /// <summary>
     /// 게임 오버
     /// </summary>
     public void GameOver()
     {
         isPlaying = false;
+        gameOver.SetActive(true);
     }
 
     /// <summary>
