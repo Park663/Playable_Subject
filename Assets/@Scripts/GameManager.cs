@@ -78,5 +78,9 @@ public class GameManager : MonoBehaviour
         item.TouchEffect(false);
     }
 
+    public void GameOver()
+    {
+        isPlaying = false;
+    }
 
 }

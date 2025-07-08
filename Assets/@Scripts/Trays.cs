@@ -55,7 +55,14 @@ public class Trays : MonoBehaviour
 
     private void OnExitScreen()
     {
-        Debug.Log("Exit");
+        if (CheckTray())
+        {
+
+        }
+        else
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 
     private void ResetTray()
@@ -65,7 +72,7 @@ public class Trays : MonoBehaviour
 
     private bool CheckTray()
     {
-        return true;
+        return status.itemCount == 3;
     }
 
     private void StatusUpdate()
