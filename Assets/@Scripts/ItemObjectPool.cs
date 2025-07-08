@@ -6,13 +6,13 @@ using UnityEngine.Pool;
 public class ItemObjectPool : MonoBehaviour
 {
     public static ItemObjectPool Instance { get; private set; }
-
-    [SerializeField] private GameObject itemPrefab;
-    [Range(0, 50)] public int defaultCapacity = 10;
-    [Range(0, 50)] public int maxSize = 30;
-
+    // 오브젝트 풀 설정
+    private int defaultCapacity = 21;
+    private int maxSize = 50;
     public IObjectPool<GameObject> itemPool;
-    public Transform itemParent;
+
+    [SerializeField, Tooltip("아이템 프리팹")] private GameObject itemPrefab;
+    [SerializeField, Tooltip("아이템 생성할 부모 오브젝트")] private Transform itemParent;
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class ItemObjectPool : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        itemPool = new ObjectPool<GameObject>(CreateItem, EnableItem, DisableItem, DestroyItem,true, defaultCapacity, maxSize);
+        itemPool = new ObjectPool<GameObject>(CreateItem, EnableItem, DisableItem, DestroyItem, true, defaultCapacity, maxSize);
     }
     private GameObject CreateItem()
     {

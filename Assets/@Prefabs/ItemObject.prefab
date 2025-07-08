@@ -114,6 +114,8 @@ MonoBehaviour:
     mesh: {fileID: -6197178469139424334, guid: 24372e5c7836e49f48857a6985636870, type: 3}
     material: {fileID: 2100000, guid: 6b36247b57042134795489623eaee80f, type: 2}
   objType: 0
+  meshFilter: {fileID: 0}
+  rendererMaterial: {fileID: 0}
 --- !u!136 &3624920299745260490
 CapsuleCollider:
   m_ObjectHideFlags: 0

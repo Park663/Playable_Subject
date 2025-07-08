@@ -7,11 +7,12 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {   
-    [SerializeField] private List<MeshMap> meshes;
-    [SerializeField] public ObjectType objType;
+    [SerializeField, Tooltip("아이템 종류, 메쉬, 머티리얼")] private List<MeshMap> meshes;
+    [Tooltip("아이템의 종류")] public ObjectType objType;
 
-    public MeshFilter meshFilter;
-    public Renderer rendererMaterial;
+    // 메쉬와 머티리얼 자가 참조용
+    [HideInInspector] public MeshFilter meshFilter;
+    [HideInInspector] public Renderer rendererMaterial;
 
 
     private void Awake()
@@ -24,6 +25,7 @@ public class Items : MonoBehaviour
     {
         RandomMesh();
     }
+
     private void RandomMesh()
     {
         int n = UnityEngine.Random.Range(0, (int)ObjectType.Count);
@@ -31,10 +33,19 @@ public class Items : MonoBehaviour
         meshFilter.mesh = meshes[n].mesh;
         rendererMaterial.material = meshes[n].material;
     }
+
     private void Update()
     {
         if (!GameManager.Instance.isPlaying) return;
 
+        Move();
+    }
+
+    /// <summary>
+    /// 아이템 이동
+    /// </summary>
+    public void Move()
+    {
         if (transform.position.y >= GameManager.Instance.itemEndPos.position.y)
         {
             ItemObjectPool.Instance.itemPool.Release(gameObject);
@@ -43,9 +54,13 @@ public class Items : MonoBehaviour
         transform.Translate(Vector2.up * GameManager.Instance.itemSpeed * Time.deltaTime);
     }
 
-    public void OnClicked(bool b)
+    /// <summary>
+    /// 아이템 클릭 시 동작
+    /// </summary>
+    /// <param name="moveToTray">트레이에 들어가는 여부</param>
+    public void OnClicked(bool moveToTray)
     {
-        if (b)
+        if (moveToTray)
         {
             ItemObjectPool.Instance.itemPool.Release(gameObject);
         }

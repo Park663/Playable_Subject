@@ -6,19 +6,20 @@ using UnityEngine.UI;
 
 public class Trays : MonoBehaviour
 {
-    private Camera mainCam;
-    private bool wasVisibleLastFrame = false;
+    private Camera mainCam; // 메인 카메라
+    private bool wasVisibleLastFrame = false; // 화면 출입 시 콜백 용
 
     public TrayStatus status;
 
-    [SerializeField] private List<GameObject> displayItems;
-    [SerializeField] private List<Sprite> labelImages;
+    [SerializeField, Tooltip("아이템 획득 시 표시될 오브젝트")] private List<GameObject> displayItems;
 
-    [SerializeField] private RectTransform label;
-    public Image itemLabel;
-    public TextMeshProUGUI labelText;
-
-    public Transform labelPos;
+    [Header("-----UI 파라미터-----")]
+    [SerializeField, Tooltip("UI 부착 위치")] private Transform labelPos;
+    [SerializeField, Tooltip("아이템 이미지 리스트")] private List<Sprite> labelImages;
+    [SerializeField, Tooltip("UI 캔버스 내 위치")] private RectTransform label;
+    [SerializeField, Tooltip("아이템 이미지")] private Image itemLabel;
+    [SerializeField, Tooltip("아이템 개수 텍스트")] private TextMeshProUGUI labelText;
+    [SerializeField, Tooltip("성공 후 이미지")] private GameObject starImage;
 
     private void Awake()
     {
@@ -30,9 +31,11 @@ public class Trays : MonoBehaviour
         if (!GameManager.Instance.isPlaying) return;
         VisibilityCheck();
         Move();
-
     }
 
+    /// <summary>
+    /// 트레이와 UI 이동
+    /// </summary>
     private void Move()
     {
         if (transform.position.y <= GameManager.Instance.trayPos[1].position.y)
@@ -44,9 +47,11 @@ public class Trays : MonoBehaviour
 
         transform.Translate(Vector2.down * GameManager.Instance.traySpeed * Time.deltaTime);
         label.position = labelPos.position;
-
     }
 
+    /// <summary>
+    /// 트레이가 화면을 출입할 때 콜백 
+    /// </summary>
     private void VisibilityCheck()
     {
         Vector3 viewPos = mainCam.WorldToViewportPoint(transform.position);
@@ -66,46 +71,63 @@ public class Trays : MonoBehaviour
         wasVisibleLastFrame = isVisibleNow;
     }
 
+    /// <summary>
+    /// 트레이가 화면 안으로 들어올 때 동작
+    /// </summary>
     private void OnEnterScreen()
     {
-        status.interactable = true;
+        status.interactable = true; // 화면 안으로 들어온 순간부터 아이템 적재 가능
         label.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// 트레이가 화면 밖으로 나갈 때 동작
+    /// </summary>
     private void OnExitScreen()
     {
-        if (CheckTray())
-        {
-
-        }
-        else
+        if (!CheckTray()) // 다 못채우면 게임 오버
         {
             GameManager.Instance.GameOver();
         }
     }
 
+    /// <summary>
+    /// 트레이 정보 초기화
+    /// </summary>
     private void ResetTray()
     {
-        foreach (var v in displayItems)
+        foreach (var v in displayItems) // 전시용 오브젝트 끄기
         {
             v.SetActive(false);
         }
-        label.gameObject.SetActive(false);
+
         status.itemCount = 0;
         status.interactable = false;
 
-        ObjectType type = GameManager.Instance.TrayTypeChange();
+        
+        ObjectType type = GameManager.Instance.TrayTypeChange(); // 아이템 종류 랜덤 변경
         status.trayType = type;
 
+        // UI 초기화
+        label.gameObject.SetActive(false);
         itemLabel.sprite = labelImages[(int)type];
         labelText.text = "/ 3";
+        starImage.SetActive(false);
     }
 
+    /// <summary>
+    /// 아이템 적재 여부 확인
+    /// </summary>
+    /// <returns>성공, 실패 여부 반환</returns>
     private bool CheckTray()
     {
         return status.itemCount == 3;
     }
 
+    /// <summary>
+    /// 아이템 클릭 시 트레이 확인
+    /// </summary>
+    /// <param name="item">클릭한 아이템</param>
     public void AddItem(Items item)
     {
         displayItems[status.itemCount].SetActive(true);
@@ -115,11 +137,11 @@ public class Trays : MonoBehaviour
 
         status.itemCount++;
 
-        if (status.itemCount == 3)
+        if (status.itemCount == 3) // 3개 모두 적재 시 비활성화
         {
             status.interactable = false;
             labelText.text = "";
-
+            starImage.SetActive(true);
         }
     }
 }
