@@ -3,22 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public struct MeshMap
-{
-    public ObejectType type;
-    public Mesh mesh;
-    public Material material;
-}
-public enum ObejectType
-{
-    Coke = 0,
-    Juice,
-    Pringles,
-    Bars,
-    Yoplait,
-    Count
-}
+
 
 public class Items : MonoBehaviour
 {   
@@ -28,7 +13,6 @@ public class Items : MonoBehaviour
     private MeshFilter meshFilter;
     private Renderer rendererMaterial;
 
-    private float moveSpeed = 1f;
 
     private void Awake()
     {
