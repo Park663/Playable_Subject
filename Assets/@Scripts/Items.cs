@@ -51,8 +51,17 @@ public class Items : MonoBehaviour
     {
         if (!GameManager.Instance.isPlaying) return;
 
-        if(transform.position.y >= GameManager.Instance.endPos.position.y) ItemObjectPool.Instance.itemPool.Release(gameObject);
+        if (transform.position.y >= GameManager.Instance.itemEndPos.position.y)
+        {
+            ItemObjectPool.Instance.itemPool.Release(gameObject);
+            return;
+        }
         transform.Translate(Vector2.up * GameManager.Instance.itemSpeed * Time.deltaTime);
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log("Clicked");
     }
 }
 

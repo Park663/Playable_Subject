@@ -8,15 +8,16 @@ public class GameManager : MonoBehaviour
 
 
     public bool isPlaying = false;
-    public List<Items> items;
-    public List<Transform> itemTransform;
     public float itemSpeed = 10f;
     public float spawnInterval = 1f;
+    public float spawnCoolTime = 0;
 
-    public Transform endPos;
+    public Transform itemEndPos;
+    public List<Transform> itemSpawnPos = new List<Transform>();
 
-    public float spawnCount = 0;
-    public List<Transform> spawnPos = new List<Transform>();
+    public float traySpeed = 10f;
+    public List<Transform> trayPos = new List<Transform>();
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -38,11 +39,11 @@ public class GameManager : MonoBehaviour
 
     private void SpawnItem()
     {
-        if (spawnCount >= spawnInterval)
+        if (spawnCoolTime >= spawnInterval)
         {
-            spawnCount = 0;
+            spawnCoolTime = 0;
             
-            foreach (var v in spawnPos)
+            foreach (var v in itemSpawnPos)
             {
                 ItemObjectPool.Instance.itemPool.Get().transform.position = v.position;
 
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            spawnCount += Time.deltaTime;
+            spawnCoolTime += Time.deltaTime;
         }
     }
 
